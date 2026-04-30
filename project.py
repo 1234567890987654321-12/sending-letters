@@ -1,37 +1,45 @@
 import smtplib
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-name = "семен"
-promo = "pro20"
-active = "1 год"
-name_team = "greenkraft"
+name = input("Введите имя клиента: ")
+promo = input("Введите промокод: ")
+active = input("Срок действия (например, 1 год): ")
+name_team = input("Название вашей команды: ")
+
 sender_mail = "ssemenyaev@yandex.ru"
-recipient_mail = "ssemenyaev@yandex.ru"
-LOGIN = os.getenv("YM_LOGIN")
-PASSWORD = os.getenv("YM_PASSWORD")
+recipient_mail = input("Введите почту получателя: ")
+
+LOGIN = "ssemenyaev@yandex.ru" 
+PASSWORD = input("Введите ваш пароль приложения Яндекс: ")
+
 subject = "акции от greenkraft"
-letter = """
-Здравствуйте, #user_name#!
+
+letter = f"""
+Здравствуйте, {name}!
 Мы рады предложить вам специальное предложение на нашу продукцию! Мы дарим вам уникальный промокод, который дает скидку 20% на все наши товары.
 
-Промокод: #promo#
+Промокод: {promo}
 
-Просто введите этот код при оформлении заказа на нашем сайте и получите скидку на любой товар в нашем ассортименте. Но не забудьте, что этот промокод действителен только до #data#.
+Просто введите этот код при оформлении заказа на нашем сайте и получите скидку на любой товар в нашем ассортименте. Но не забудьте, что этот промокод действителен только до {active}.
 
 Не упустите шанс сэкономить на покупке наших товаров! Мы надеемся, что вы найдете что-то, что подойдет именно вам.
 
 С уважением,
-Команда #name_team#!""".replace("#user_name#", name).replace("#promo#", promo).replace("#data#", active).replace("#name_team#", name_team)
+Команда {name_team}!"""
+
 head = f"""From: {sender_mail}
 To: {recipient_mail}
 Subject: {subject}
 Content-Type: text/plain; charset="UTF-8";
 """
-result = head + letter
-result1 = result.encode("UTF-8")
-server = smtplib.SMTP_SSL("smtp.yandex.ru:465")
-server.login(LOGIN, PASSWORD)
-server.sendmail(sender_mail, recipient_mail, result1)
-server.quit()
+
+result = (head + letter).encode("UTF-8")
+
+try:
+    print("Успешная отправка письма")
+    server = smtplib.SMTP_SSL("smtp.yandex.ru", 465)
+    server.login(LOGIN, PASSWORD)
+    server.sendmail(sender_mail, recipient_mail, result)
+    server.quit()
+    print("✅ Письмо успешно отправлено!")
+except Exception as e:
+    print(f"Ошибка: {e}")
