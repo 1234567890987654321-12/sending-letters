@@ -2,6 +2,7 @@
 ## Введение в проект (Описание проекта)
 "sending letters" - это "консольная" программа для отправки писем через библиотеку smptb lib
 
+<img width="464" height="260" alt="2026-04-3019-00-22-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/77276796-26b5-4bb7-b36d-9d127e8bcf89" />
 
 ## Цели проекта
 отправкa писем через библиотеку
