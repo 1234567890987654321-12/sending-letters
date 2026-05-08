@@ -5,13 +5,13 @@ promo = input("Введите промокод: ")
 active = input("Срок действия (например, 1 год): ")
 name_team = input("Название вашей команды: ")
 
-sender_mail = "ssemenyaev@yandex.ru"
+sender_mail = input"Введите свою почту"
 recipient_mail = input("Введите почту получателя: ")
 
-LOGIN = "ssemenyaev@yandex.ru" 
+LOGIN = input"Введите логин от почты" 
 PASSWORD = input("Введите ваш пароль приложения Яндекс: ")
 
-subject = "акции от greenkraft"
+subject = input"Введите заголовок"
 
 letter = f"""
 Здравствуйте, {name}!
